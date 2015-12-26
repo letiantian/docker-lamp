@@ -1,8 +1,9 @@
 #!/bin/bash
-
 service ssh start
 service mysql start
-service apache2 start
+
+a2enmod rewrite
+service apache2 restart
 
 while true
 do
