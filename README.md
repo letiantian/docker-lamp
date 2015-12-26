@@ -32,6 +32,8 @@ $ sudo docker run -d -p 9876:80 -p 8022:22 -v ~/html:/var/www/html letian/lamp:v
 487defda99d54523d2e0fd966a2d1e3e5be12405a94b15749b5095eb571d9373
 ```
 
+`http://127.0.0.1:9876/` will show the result of `phpinfo()`.
+
 Use ssh: 
 ```
 $ ssh root@127.0.0.1 -p 8022
@@ -89,5 +91,3 @@ https://serversforhackers.com/video/installing-mysql-with-debconf
 http://askubuntu.com/questions/79257/how-do-i-install-mysql-without-a-password-prompt  
 http://txt.fliglio.com/2013/11/creating-a-mysql-docker-container/  
 https://docs.docker.com/engine/examples/running_ssh_service/  
-
-
