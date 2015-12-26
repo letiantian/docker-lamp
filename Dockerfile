@@ -17,6 +17,8 @@ RUN \
     && apt-get -y install mysql-client mysql-server \
     && sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
 
+# RUN echo "GRANT ALL ON *.* TO admin@'%' IDENTIFIED BY 'adminpass' WITH GRANT OPTION; FLUSH PRIVILEGES" | mysql -uroot -pmysqlpass
+
 # lamp
 RUN \
     apt-get install -y apache2 \
@@ -24,7 +26,12 @@ RUN \
     && apt-get install -y php5 php5-cli php5-mysql php-pear php5-gd  php5-mcrypt php5-curl \
     && sed -i 's/DirectoryIndex.*/DirectoryIndex index.php index.html/' /etc/apache2/mods-available/dir.conf
 
-# RUN echo "GRANT ALL ON *.* TO admin@'%' IDENTIFIED BY 'adminpass' WITH GRANT OPTION; FLUSH PRIVILEGES" | mysql -uroot -pmysqlpass
+
+
+# enable apache rewrite
+RUN \ 
+    a2enmod rewrite \
+    && sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
 VOLUME /var/www/html
 
